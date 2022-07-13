@@ -7,7 +7,7 @@ const list = [
     availabilty: ['BREAKFAST','LUNCH'],
     cuisine: 'SouthIndian',
     price: 50,
-    amount:1
+    amount:0
   },
   {
   id: 2,
@@ -17,7 +17,7 @@ const list = [
   availabilty:['BREAKFAST' ,'LUNCH'],
   cuisine: 'NorthIndian',
   price: 40,
-  amount:1
+  amount:0
 },
 {
   id: 3,
@@ -27,7 +27,7 @@ const list = [
   availabilty: ['BREAKFAST','LUNCH','DINNER'],
   cuisine: 'SouthIndian',
   price: 100,
-  amount:1
+  amount:0
 },
     
 ];

@@ -2,47 +2,74 @@ import React, { useState } from "react";
 import Data from "./components/data";
 import Navbar from "./components/navbar";
 import Cart from "./components/cart";
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Order from "./components/order";
 
 const App = () => {
-  const [show, setShow] = useState(true);
   const [cart, setCart] = useState([]);
+  const [order, setOrder] = useState([]);
 
   const handleClick = (item) => {
+    console.log(item);
     if (cart.indexOf(item) !== -1) return;
-    setCart([...cart, item]);
+    let temp = item;
+    temp.amount = 1;
+    setCart([...cart, temp]);
   };
 
+
+
   const handleChange = (item, d) => {
-    console.log(item,d)
     const ind = cart.indexOf(item);
     const arr = cart;
     arr[ind].amount += d;
-
     if (arr[ind].amount === 0) arr[ind].amount = 1;
     setCart([...arr]);
   };
 
-  // useEffect(() => {
-  //   console.log("cart change");
-  // }, [cart]);
+  const placeOrderClick = () => {
+    window.alert("Order Placed Successfully");
+    let today = new Date();
+    let temp = {
+      order_Date:
+        today.getDate() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getFullYear(),
+      order_Time: today.getHours() + ":" + today.getMinutes(),
+    };
+    let array = cart;
+    array.push(temp);
+    setOrder(array);
+    setCart([]);
+  };
 
   return (
     <BrowserRouter>
-
       <Routes>
-        <Route path='/' element={<Navbar setShow={setShow} size={cart.length} />} />
-        <Route path="/order" element={<Order />} />
+        <Route
+          path="/"
+          element={[
+            <Navbar size={cart.length} />,
+            <Data handleClick={handleClick} handleChange={handleChange} />,
+          ]}
+        />
+        <Route path="/order" element={<Order order={order} />} />
+        <Route
+          path="/cart"
+          element={
+            <Cart
+              cart={cart}
+              setCart={setCart}
+              handleChange={handleChange}
+              placeOrderClick={placeOrderClick}
+            />
+          }
+        />
       </Routes>
-
-      {show ? <Cart cart={cart} setCart={setCart} handleChange={handleChange} /> : null}
-      <Data handleClick={handleClick} />
-
     </BrowserRouter>
   );
-
-
 };
 
 export default App;

@@ -1,20 +1,15 @@
-import React,{useState} from "react";
+import React, { useEffect, useState } from "react";
+import "../styles/card.css";
 
-const Cards = ({ item,handleClick}) => {
+const Cards = ({ item, handleChange, handleClick }) => {
+  const { name, type, cuisine, availabilty, img, price } = item;
 
-  const [cart, setCart] = useState([]);
-  const { name, type, cuisine, availabilty,img,price } = item;
+  const [data,setData] = useState(item)
 
-  const handleChange = (item, d) => {
-     console.log(item,d)
-    const ind = cart.indexOf(item);
-    const arr = cart;
-    arr[ind].amount += d;
+  useEffect(() => {
+    console.log(item);
+  }, [item]);
 
-    if (arr[ind].amount === 0) arr[ind].amount = 1;
-    setCart([...arr]);
-  };
-  
   return (
     <div className="cards">
       <div className="image_box">
@@ -28,21 +23,33 @@ const Cards = ({ item,handleClick}) => {
         <p>{availabilty[0]}</p>
         <p>{availabilty[1]}</p>
         <p>{availabilty[2]}</p>
-        <b>Price - {price}Rs</b><br></br>
-        
-    
-        <div>
-          <button onClick={() => handleChange(item, 1)}>+</button>
-          <button>{item.amount}</button>
-          <button onClick={() => handleChange(item, -1)}>-</button>
+        <b>Price - {price}Rs</b>
+        <br></br>
+
+        <div className="actions">
+          <div>
+            <button
+              className="addCart-button"
+              onClick={() => handleClick(item)}
+            >
+              Add to Cart
+            </button>
+          </div>
+          {data.amount > 0 ? (
+            <div className="quantity">
+              <button className="plus" onClick={() => handleChange(item, 1)}>
+                +
+              </button>
+              <button className="amount">{item.amount}</button>
+              <button className="minus" onClick={() => handleChange(item, -1)}>
+                -
+              </button>
+            </div>
+          ) : null}
         </div>
-  
-    <button onClick={() => handleClick(item)}>Add to Cart</button>
-    </div>
+      </div>
     </div>
   );
 };
 
 export default Cards;
-
-

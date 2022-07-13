@@ -1,25 +1,32 @@
 import React from "react";
 import "../styles/navbar.css";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-const Navbar = ({ setShow, size }) => {
+const Navbar = ({  size, show }) => {
   return (
     <nav>
       <div className="nav_box">
-        <span className="my_shop" onClick={() => setShow(true)}>
-          Back
-        </span>
-        <div className="cart" onClick={() => setShow(false)}>
+        {show ? (
+          <span className="my_shop">
+            <Link to="/">Back</Link>
+          </span>
+        ) : (
+          <span className="my_shop">
+            Zomato
+          </span>
+        )}
+        <div className="cart">
           <span>
-            <i className="fas fa-cart-plus"></i>
+            <Link to="/cart">
+              <i className="fas fa-cart-plus"></i>
+            </Link>
           </span>
           <span>{size}</span>
         </div>
         <div className="order_btn">
-         <Link to="order">Order Page</Link>
+          <Link to="/order">Your Orders</Link>
         </div>
       </div>
-    
     </nav>
   );
 };

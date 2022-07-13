@@ -22,6 +22,10 @@ nav {
   font-weight: bold;
   cursor: pointer;
 }
+
+.my_shop:hover{
+ transform: scale(1.1);
+}
 .cart {
   cursor: pointer;
   position: relative;

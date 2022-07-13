@@ -75,3 +75,36 @@ article {
 
   font-weight: bold;
 }
+
+.cart-outlet{
+  display: flex;
+  justify-content: center;
+  margin-top: 7%;
+}
+
+.cart-outlet h1{
+  display: flex;
+  justify-content: center;
+}
+
+.cart-outlet p{
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.cart-bottom{
+  display: flex;
+  justify-content: end;
+  margin-top: 8px;
+}
+
+.cart-bottom button{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: none;
+  padding: 5px;
+}
+.cart-bottom button:hover{
+  transform: scale(1.1);
+  cursor: pointer;
+}
